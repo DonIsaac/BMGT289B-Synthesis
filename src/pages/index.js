@@ -1,3 +1,4 @@
+import { graphql } from 'gatsby';
 import React from 'react'
 import Layout from '../components/layout'
 
@@ -94,7 +95,7 @@ class IndexPage extends React.Component {
       <Layout location={this.props.location}>
         <div className={`body ${this.state.loading} ${this.state.isArticleVisible ? 'is-article-visible' : ''}`}>
           <div id="wrapper">
-            <Header onOpenArticle={this.handleOpenArticle} timeout={this.state.timeout} />
+            <Header onOpenArticle={this.handleOpenArticle} timeout={this.state.timeout} data={this.props.data} />
             <Main
               isArticleVisible={this.state.isArticleVisible}
               timeout={this.state.timeout}
@@ -102,6 +103,7 @@ class IndexPage extends React.Component {
               article={this.state.article}
               onCloseArticle={this.handleCloseArticle}
               setWrapperRef={this.setWrapperRef}
+              data={this.props.data}
             />
             <Footer timeout={this.state.timeout} />
           </div>
@@ -113,3 +115,23 @@ class IndexPage extends React.Component {
 }
 
 export default IndexPage
+
+export const query = graphql`
+query GetPostList {
+  allMdx(sort: {fields: [frontmatter___date], order: DESC}) {
+    nodes {
+      id
+      excerpt(pruneLength: 250)
+      body
+      frontmatter {
+        title
+        date
+      }
+      fields {
+        slug
+        dir
+      }
+    }
+  }
+}
+`;

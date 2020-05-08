@@ -40,18 +40,18 @@
   > * {
     @include vendor('transition', 'opacity #{_duration(article)} ease-in-out');
     position: relative;
-    margin-top: 3.5rem;
+    margin-top: 2.5rem;
 
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: calc(-3.5rem - 1px);
-      left: calc(50% - #{_size(border-width) * 1});
-      width: _size(border-width);
-      height: calc(3.5rem + 1px);
-      background: _palette(border);
-    }
+    // &:before {
+    //   content: '';
+    //   display: block;
+    //   position: absolute;
+    //   top: calc(-3.5rem - 1px);
+    //   left: calc(50% - #{_size(border-width) * 1});
+    //   width: _size(border-width);
+    //   height: calc(3.5rem + 1px);
+    //   background: _palette(border);
+    // }
   }
 
   > :first-child {
@@ -93,7 +93,7 @@
         )
       );
       @include vendor('transition-delay', '0.25s');
-      padding: 3rem 2rem;
+      padding: 2.5rem 2rem;
       max-height: 40rem;
       overflow: hidden;
 

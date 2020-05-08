@@ -1,26 +1,46 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { useSiteMetadata } from '../hooks/useSiteMetadata'
+import Separator from '../assets/svg/divider.svg'
 
-const Header = props => (
-  <header id="header" style={props.timeout ? { display: 'none' } : {}}>
-    <div className="logo">
-      <span className="icon fa-diamond"></span>
-    </div>
-    <div className="content">
-      <div className="inner">
-        <h1>Dimension</h1>
-        <p>
-          A fully responsive site template designed by{' '}
-          <a href="https://html5up.net">HTML5 UP</a> and released
-          <br />
-          for free under the{' '}
-          <a href="https://html5up.net/license">Creative Commons</a> license.
-        </p>
+
+const Header = ({ timeout, data, onOpenArticle }) => {
+
+  const { title, author, description } = useSiteMetadata()
+
+  return (
+    <header id="header" style={timeout ? { display: 'none' } : {}}>
+      <div className="logo">
+        <span className="icon fa-diamond"></span>
       </div>
-    </div>
-    <nav>
-      <ul>
-        <li>
+      <div className="content">
+        <div className="inner">
+          <h1>{title}</h1>
+          <Separator className="separator" style={{ height: '2.5em', width: 'auto', color: 'white' }}/>
+          <h2>{author}</h2>
+          <p>
+            {description}
+          </p>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          {
+            data.allMdx.nodes
+              .filter(
+                (node, index, arr) => node.fields.dir === 'pages'
+              )
+              .map(({ fields, frontmatter: { title } }) => {
+                let page = fields.slug.replace('/', '')
+                return { page, title }
+              })
+              .map(({ page, title }) => (
+                <li>
+                  <button onClick={() => onOpenArticle(page)}>{title}</button>
+                </li>
+              ))
+          }
+          {/* <li>
           <button
             onClick={() => {
               props.onOpenArticle('intro')
@@ -55,11 +75,12 @@ const Header = props => (
           >
             Contact
           </button>
-        </li>
-      </ul>
-    </nav>
-  </header>
-)
+        </li> */}
+        </ul>
+      </nav>
+    </header>
+  )
+}
 
 Header.propTypes = {
   onOpenArticle: PropTypes.func,

@@ -1,10 +1,21 @@
 import PropTypes from 'prop-types'
+import Article from './Article';
 import React from 'react'
-import pic01 from '../images/pic01.jpg'
-import pic02 from '../images/pic02.jpg'
-import pic03 from '../images/pic03.jpg'
+import pic01 from '../assets/images/pic01.jpg'
+import pic02 from '../assets/images/pic02.jpg'
+import pic03 from '../assets/images/pic03.jpg'
 
-class Main extends React.Component {
+export default ({data, ...props}) => (
+  <div
+    ref={props.setWrapperRef}
+    id="main"
+    style={props.timeout ? { display: 'flex' } : { display: 'none' }}
+  >
+    {data.allMdx.nodes.map(node => <Article data={node} {...props} />)}
+    {/* <Article /> */}
+  </div>
+);
+/* class Main extends React.Component {
   render() {
     let close = (
       <div
@@ -21,17 +32,12 @@ class Main extends React.Component {
         id="main"
         style={this.props.timeout ? { display: 'flex' } : { display: 'none' }}
       >
-        <article
-          id="intro"
-          className={`${this.props.article === 'intro' ? 'active' : ''} ${
-            this.props.articleTimeout ? 'timeout' : ''
-          }`}
-          style={{ display: 'none' }}
-        >
-          <h2 className="major">Intro</h2>
-          <span className="image main">
-            <img src={pic01} alt="" />
-          </span>
+        <Article
+          article={this.props.article}
+          articleTimeout={this.props.articleTimeout}
+          img={pic01}
+          onCloseArticle={this.props.onCloseArticle}
+          >
           <p>
             Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin
             aliquam facilisis ante interdum congue. Integer mollis, nisl amet
@@ -52,38 +58,7 @@ class Main extends React.Component {
             placerat maximus. Pellentesque aliquam maximus risus, vel sed
             vehicula.
           </p>
-          {close}
-        </article>
-
-        <article
-          id="work"
-          className={`${this.props.article === 'work' ? 'active' : ''} ${
-            this.props.articleTimeout ? 'timeout' : ''
-          }`}
-          style={{ display: 'none' }}
-        >
-          <h2 className="major">Work</h2>
-          <span className="image main">
-            <img src={pic02} alt="" />
-          </span>
-          <p>
-            Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu,
-            at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent
-            urna nisi, fringila lorem et vehicula lacinia quam. Integer
-            sollicitudin mauris nec lorem luctus ultrices.
-          </p>
-          <p>
-            Nullam et orci eu lorem consequat tincidunt vivamus et sagittis
-            libero. Mauris aliquet magna magna sed nunc rhoncus pharetra.
-            Pellentesque condimentum sem. In efficitur ligula tate urna.
-            Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor.
-            Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis
-            libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat
-            tempus.
-          </p>
-          {close}
-        </article>
-
+        </Article>
         <article
           id="about"
           className={`${this.props.article === 'about' ? 'active' : ''} ${
@@ -182,3 +157,4 @@ Main.propTypes = {
 }
 
 export default Main
+*/
