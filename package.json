@@ -6,9 +6,9 @@
   "scripts": {
     "format": "prettier --write '**/*.js'",
     "prestart": "rm -rf .cache public",
-    "start": "npm run develop",
+    "start": "gatsby develop",
 
-    "build": "gatsby build --prefix-paths",
+    "build": "gatsby build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d public",
     "deploy:ci": "gh-pages -d public",
