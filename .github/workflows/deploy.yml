@@ -21,7 +21,7 @@ jobs:
         run: |
           git config user.name "Github Actions"
           git config user.email "noemail@gmail.com"
-          npm run deploy:ci
+          npm run deploy
       #    gh-pages -d public -r https://${{ secrets.GITHUB_TOKEN }}@github.com/DonIsaac/BMGT289B-Synthesis.git
       #   npm run deploy:ci
       # - name: Deploy
