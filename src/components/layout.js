@@ -45,6 +45,7 @@ const Layout = ({ children, location }) => {
               { name: 'keywords', content: 'sample, something' },
             ]}
           >
+            <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer />
             <html lang="en" />
           </Helmet>
           {content}

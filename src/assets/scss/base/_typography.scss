@@ -40,7 +40,7 @@
 			'background-color #{_duration(transition)} ease-in-out',
 			'border-bottom-color #{_duration(transition)} ease-in-out'
 		));
-		border-bottom: dotted 1px _palette(fg-light);
+		border-bottom: solid 1px _palette(fg-light);
 		text-decoration: none;
 		color: inherit;
 
@@ -60,6 +60,10 @@
 
 	p {
 		margin: 0 0 _size(element-margin) 0;
+	}
+
+	li > p {
+		margin: 0 0 _size(element-margin) / 4 0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {

@@ -75,6 +75,7 @@
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
+	.button,
 	button {
 		line-height: calc(#{_size(element-height)} - 2px);
 	}

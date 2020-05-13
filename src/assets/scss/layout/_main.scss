@@ -6,70 +6,96 @@
 
 /* Main */
 
-	#main {
-		@include vendor('flex-grow', '1');
-		@include vendor('flex-shrink', '1');
-		@include vendor('display', 'flex');
-		@include vendor('align-items', 'center');
-		@include vendor('justify-content', 'center');
-		@include vendor('flex-direction', 'column');
+#main {
+	@include vendor("flex-grow", "1");
+	@include vendor("flex-shrink", "1");
+	@include vendor("display", "flex");
+	@include vendor("align-items", "center");
+	@include vendor("justify-content", "center");
+	@include vendor("flex-direction", "column");
+	position: relative;
+	max-width: 100%;
+	z-index: 3;
+	display: none;
+
+	article {
+		@include vendor("transform", "translateY(0.25rem)");
+		@include vendor(
+			"transition",
+			("opacity #{_duration(article)} ease-in-out", "transform #{_duration(article)} ease-in-out")
+		);
+		@include padding(2.5rem, 2.5rem, (2rem, 0, 1rem, 0));
 		position: relative;
+		width: 40rem;
 		max-width: 100%;
-		z-index: 3;
-		display: none;
+		background-color: transparentize(_palette(bg), 0.15);
+		border-radius: _size(border-radius);
+		opacity: 0;
 
-		article {
-			@include vendor('transform', 'translateY(0.25rem)');
-			@include vendor('transition', (
-				'opacity #{_duration(article)} ease-in-out',
-				'transform #{_duration(article)} ease-in-out'
-			));
-			@include padding(2.5rem, 2.5rem, (2rem, 0, 1rem, 0));
-			position: relative;
-			width: 40rem;
-			max-width: 100%;
-			background-color: transparentize(_palette(bg), 0.15);
-			border-radius: _size(border-radius);
-			opacity: 0;
+		&.timeout {
+			display: none;
+		}
 
-			&.timeout {
-				display: none;
+		&.active.timeout {
+			@include vendor("transform", "translateY(0)");
+			opacity: 1;
+		}
+
+		&.active {
+			display: block !important;
+			box-shadow: 7px 7px 20px 5px darken(_palette(bg), 10%);
+		}
+
+		.article-content {
+			h2 + h2 {
+				margin-top: 1.5em;
+
 			}
 
-			&.active.timeout {
-				@include vendor('transform', 'translateY(0)');
-				opacity: 1;
+			h3 + h3 {
+				margin-top: 1em;
 			}
 
-			&.active {
-				display: block !important;
-				box-shadow: 7px 7px 20px 5px darken(_palette(bg), 10%);
-			}
+		}
 
-			.close {
-				display: block;
-				position: absolute;
-				top: 0;
-				right: 0;
+		.article-nav {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 100%;
+
+			// Back button
+			.back {
+				display: inline-block;
 				width: 4rem;
 				height: 4rem;
 				cursor: pointer;
 				text-indent: 4rem;
 				overflow: hidden;
 				white-space: nowrap;
+				text-decoration: none;
+				border-bottom-width: 0;
 
 				&:before {
-					@include vendor('transition', 'background-color #{_duration(transition)} ease-in-out');
-					content: '';
+					@include vendor("transition", "background-color #{_duration(transition)} ease-in-out");
+					content: "";
 					display: block;
-					position: absolute;
+					position: relative;
 					top: 0.75rem;
 					left: 0.75rem;
 					width: 2.5rem;
 					height: 2.5rem;
 					border-radius: 100%;
 					background-position: center;
-					background-image: svg-url('<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" zoomAndPan="disable"><style>line { stroke: #{_palette(border)}; stroke-width: 1; }</style><line x1="2" y1="2" x2="18" y2="18" /><line x1="18" y1="2" x2="2" y2="18" /></svg>');
+					// background-image: svg-url(
+					// 	'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" zoomAndPan="disable"><style>line { stroke: #{_palette(border)}; stroke-width: 1; }</style><line x1="0" y1="10" x2="18" y2="10" /> <line x1="1" y1="10" x2="10" y2="2" x2="10" y1="9.590819" x1="1.406253" /> <line x1="1"  y1="10"  x2="10"  y2="16"  x2="10" y1="9.590819" x1="1.531253" /></svg>'
+					//  );
+					background-image: svg-url(
+						'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" zoomAndPan="disable"><style>line { stroke: #{_palette(border)}; stroke-width: 1.5; }</style><line x1="0" y1="10" x2="20" y2="10" /><line x1="0" y1="10" x2="10" y2="1" /><line x1="0" y1="10" x2="10" y2="19" /></svg>'
+					);
 					background-size: 20px 20px;
 					background-repeat: no-repeat;
 				}
@@ -85,28 +111,85 @@
 						background-color: _palette(border-bg-alt);
 					}
 				}
-			}
+			} // !Back button
 
-		}
+			// Close button
+			.close {
+				display: inline-block;
+				width: 4rem;
+				height: 4rem;
+				cursor: pointer;
+				text-indent: 4rem;
+				overflow: hidden;
+				white-space: nowrap;
+				text-decoration: none;
+				border-bottom-width: 0;
 
-		@include breakpoint(small) {
-			article {
-				@include padding(2rem, 2rem, (1.5rem, 0, 0.5rem, 0));
-				.close {
+				&:before {
+					@include vendor("transition", "background-color #{_duration(transition)} ease-in-out");
+					content: "";
+					display: block;
+					position: relative;
+					top: 0.75rem;
+					left: 0.75rem;
+					width: 2.5rem;
+					height: 2.5rem;
+					border-radius: 100%;
+					background-position: center;
+					background-image: svg-url(
+						'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" zoomAndPan="disable"><style>line { stroke: #{_palette(border)}; stroke-width: 2; }</style><line x1="2" y1="2" x2="18" y2="18" /><line x1="18" y1="2" x2="2" y2="18" /></svg>'
+					);
+					background-size: 20px 20px;
+					background-repeat: no-repeat;
+				}
+
+				&:hover {
 					&:before {
-						top: 0.875rem;
-						left: 0.875rem;
-						width: 2.25rem;
-						height: 2.25rem;
-						background-size: 14px 14px;
+						background-color: _palette(border-bg);
 					}
+				}
+
+				&:active {
+					&:before {
+						background-color: _palette(border-bg-alt);
+					}
+				}
+			} // !Close button
+		}
+	}
+
+	@include breakpoint(small) {
+		article {
+			@include padding(2rem, 2rem, (1.5rem, 0, 0.5rem, 0));
+			.close {
+				&:before {
+					top: 0.875rem;
+					left: 0.875rem;
+					width: 2.25rem;
+					height: 2.25rem;
+					background-size: 14px 14px;
 				}
 			}
 		}
+	}
 
-		@include breakpoint(xsmall) {
-			article {
-				@include padding(2rem, 1.5rem, (1rem, 0, 0.5rem, 0));
-			}
+	@include breakpoint(xsmall) {
+		article {
+			@include padding(2rem, 1.5rem, (1rem, 0, 0.5rem, 0));
 		}
 	}
+
+	// Article-specific classes
+
+	.se-numbers {
+		h1 {
+			margin: 0 auto;
+		}
+		h3 {
+			margin-bottom: 1.5rem;
+		}
+		h4 {
+			margin: 1.5rem auto 0 auto;
+		}
+	}
+}

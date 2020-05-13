@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { useSiteMetadata } from '../hooks/useSiteMetadata'
+import toName from '../util/getNameFromSluglike'
 import Separator from '../assets/svg/divider.svg'
 
 
-const Header = ({ timeout, data, onOpenArticle }) => {
+const Header = ({ timeout, data, onArticleClick }) => {
 
   const { title, author, description } = useSiteMetadata()
 
@@ -28,18 +29,24 @@ const Header = ({ timeout, data, onOpenArticle }) => {
           {
             data.allMdx.nodes
               .filter(
-                (node, index, arr) => node.fields.dir === 'pages'
+                node => node.fields.dir === 'pages'
               )
-              .map(({ fields, frontmatter: { title } }) => {
-                let page = fields.slug.replace('/', '')
-                return { page, title }
+              .map(({ fields, frontmatter: { title, linktext } }) => {
+                // /article4/ => #article4/
+                let page = toName(fields.slug)
+                linktext = linktext ?? title
+                return { page, linktext }
               })
-              .map(({ page, title }) => (
+              .map(({ page, linktext }) => (
                 <li>
-                  <button onClick={() => onOpenArticle(page)}>{title}</button>
+                  {/* <button onClick={() => onOpenArticle(page)} key={linktext}>{linktext}</button> */}
+                  <a className="button" href={`#${page}`} key={linktext}>{linktext}</a>
                 </li>
               ))
           }
+          <li>
+            <a className="button" href={`#questions/`}>I-Series</a>
+          </li>
           {/* <li>
           <button
             onClick={() => {

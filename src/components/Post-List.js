@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from 'gatsby';
 
 const PostList = ({ posts }) => (
     <>
-        {posts.map(({ node }) => <PostLink key={node.slug} {...node} />)}
+        {posts.map( node => <PostLink key={node.fields.slug} {...node} />)}
     </>
 );
 export default PostList;
