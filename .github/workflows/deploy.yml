@@ -21,12 +21,11 @@ jobs:
         run: |
           git config user.name "Github Actions"
           git config user.email "noemail@gmail.com"
-          npm run deploy
-      #    gh-pages -d public -r https://${{ secrets.GITHUB_TOKEN }}@github.com/DonIsaac/BMGT289B-Synthesis.git
-      #   npm run deploy:ci
-      # - name: Deploy
-      #   uses: JamesIves/github-pages-deploy-action@releases/v3
-      #   with:
-      #     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-      #     BRANCH: gh-pages
-      #     FOLDER: public
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
+          GIT_CONFIG_NAME: Github Actions
+          
