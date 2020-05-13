@@ -15,6 +15,9 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy
+        shell: bash
+        env:
+          GHTOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run deploy:ci
       # - name: Deploy
       #   uses: JamesIves/github-pages-deploy-action@releases/v3

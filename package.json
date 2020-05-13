@@ -11,7 +11,7 @@
     "build": "gatsby build --prefix-paths",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d public",
-    "deploy:ci": "gh-pages -d public -r https://${{ secrets.GITHUB_TOKEN }}@github.com/DonIsaac/BMGT289B-Synthesis.git",
+    "deploy:ci": "gh-pages -d public -r https://${GHTOKEN}@github.com/DonIsaac/BMGT289B-Synthesis.git",
 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
