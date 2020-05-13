@@ -174,7 +174,7 @@ export default IndexPage
 
 export const query = graphql`
 query GetPostList {
-  allMdx(sort: {fields: [frontmatter___date], order: DESC}) {
+  allMdx(sort: {fields: [fields___slug], order: ASC}) {
     nodes {
       id
       excerpt(pruneLength: 150)
@@ -182,7 +182,6 @@ query GetPostList {
       frontmatter {
         title
         linktext
-        date
       }
       fields {
         slug

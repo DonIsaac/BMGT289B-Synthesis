@@ -7,12 +7,10 @@
     "format": "prettier --write '**/*.js'",
     "prestart": "rm -rf .cache public",
     "start": "gatsby develop",
-
     "build": "gatsby build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d public",
     "deploy:ci": "gh-pages -d public",
-
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -25,7 +23,9 @@
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sass": "^2.1.27",
+    "gatsby-plugin-sharp": "^2.6.3",
     "gatsby-plugin-styled-components": "^3.3.1",
+    "gatsby-remark-images": "^3.3.3",
     "gatsby-source-filesystem": "^2.3.1",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",

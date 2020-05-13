@@ -192,4 +192,11 @@
 			margin: 1.5rem auto 0 auto;
 		}
 	}
+
+	figcaption {
+		text-align: center;
+		color: _palette(fg-light);
+		font-size: .7rem;
+		margin-top: .25rem;
+	}
 }

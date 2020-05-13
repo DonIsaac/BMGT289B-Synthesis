@@ -1,3 +1,4 @@
+// @ts-check
 const siteMetadata = {
     title: 'BMGT289B Course Synthesis',
     prefix: 'BMGT289B-Synthesis',
@@ -11,6 +12,10 @@ module.exports = {
   pathPrefix: '/' + siteMetadata.prefix,
   plugins: [
     'gatsby-plugin-react-helmet',
+    `gatsby-plugin-sharp`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-remark-images`,
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-react-svg`,
       options: {
@@ -19,7 +24,6 @@ module.exports = {
         }
       }
     },
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -34,7 +38,17 @@ module.exports = {
     }, { // Markdown-JSX
       resolve: `gatsby-plugin-mdx`,
       options: {
-        extensions: [`.mdx`, `.md`]
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 850,
+              showCaptions: true,
+              // markdownCaptions: true
+            }
+          }
+        ]
       }
     },
     { // Source data from the filesystem
@@ -51,12 +65,18 @@ module.exports = {
         name: `pages`
       }
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/assets`,
+        name: `assets`
+      }
+    },
     // {
     //   resolve: `gatsby-theme-blog`,
     //   options: {
     //     basePath: `/blog`
     //   }
     // },
-    'gatsby-plugin-sass',
-  ],
+  ]
 }
