@@ -1,0 +1,15 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies from npm
+        run: npm install
+      - name: Compile with Gatsby and Deploy to gh pages
+        run: npm run deploy

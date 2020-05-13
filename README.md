@@ -1,19 +1,31 @@
-# gatsby-starter-dimension
+# BMGT 289B Course Synthesis
 
-**This is a starter for Gatsby.js V2.**
+This repository is the website I built for BMGT 289B - "How Do Innovators Think?"
+at the University of Maryland using Gatsby and MDX.
 
-**The older V1 version of this starter can be found on the v1 branch:**
+## Usage
 
-Gatsby.js V2 starter based on the Dimension site template, designed by HTML5 UP. Check out https://codebushi.com/gatsby-starters-and-themes/ for more Gatsby starters and templates.
+You will need the gatsby CLI tool in order to compile this website. Gatsby can
+be installed via npm. If you do not have Node.js and npm installed, you can
+download them [here](https://nodejs.org/en/download/).
 
-## Preview
+To install the gatsby CLI, run
 
-https://gatsby-dimension.surge.sh/
+```
+npm i -g gatsby
+```
 
-## Installation
+To build the website with gatsby, run
+```
+git clone https://github.com/DonIsaac/BMGT289B-Synthesis.git
+cd BMGT289B-Synthesis
+npm i
+npm start
+```
 
-Install this starter (assuming Gatsby is installed) by running from your CLI:
-<br/>
-`gatsby new gatsby-starter-dimension https://github.com/codebushi/gatsby-starter-dimension`
+This will start a development server at `http://localhost:8000`. To make
+a production build, run
 
-Run `gatsby develop` in the terminal to start the dev site.
+```
+gatsby build
+```

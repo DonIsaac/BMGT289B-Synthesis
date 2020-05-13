@@ -24,10 +24,10 @@ class IndexPage extends React.Component {
     this.handleClickOutside = this.handleClickOutside.bind(this)
     this.handleHashChange = this.handleHashChange.bind(this)
 
-    window.onhashchange = this.handleHashChange.bind(this)
   }
 
   componentDidMount() {
+    window.addEventListener('hashchange', this.handleHashChange);
     this.timeoutId = setTimeout(() => {
       let name = toName(window.location.hash);
       this.setState({ loading: '' });
@@ -46,6 +46,7 @@ class IndexPage extends React.Component {
       clearTimeout(this.timeoutId);
     }
     document.removeEventListener('mousedown', this.handleClickOutside);
+    window.removeEventListener('hashchange', this.handleHashChange);
   }
 
   setWrapperRef(node) {

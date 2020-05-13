@@ -1,9 +1,14 @@
-module.exports = {
-  siteMetadata: {
-    title: 'BMGT289N Course Synthesis',
+const siteMetadata = {
+    title: 'BMGT289B Course Synthesis',
+    prefix: 'BMGT289B-Synthesis',
     author: 'Donald Isaac',
     description: 'Course Synthesis for BMGT289N - How Do Innovators Think at the University of Maryland',
-  },
+  };
+
+
+module.exports = {
+  siteMetadata,
+  pathPrefix: '/' + siteMetadata.prefix,
   plugins: [
     'gatsby-plugin-react-helmet',
     {
