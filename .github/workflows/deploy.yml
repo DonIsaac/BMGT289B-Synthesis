@@ -2,14 +2,21 @@ name: Deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install dependencies from npm
+      - name: Install
         run: npm install
-      - name: Compile with Gatsby and Deploy to gh pages
-        run: npm run deploy
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
