@@ -4,12 +4,15 @@
   "version": "1.0.0",
   "author": "Donald Isaac",
   "scripts": {
+    "format": "prettier --write '**/*.js'",
     "prestart": "rm -rf .cache public",
     "start": "npm run develop",
+
     "build": "gatsby build --prefix-paths",
-    "develop": "gatsby develop",
-    "format": "prettier --write '**/*.js'",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d public",
+    "deploy:ci": "gh-pages -d public -r https://${{ secrets.GITHUB_TOKEN }}@github.com/DonIsaac/BMGT289B-Synthesis.git",
+
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
