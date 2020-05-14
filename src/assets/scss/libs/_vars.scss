@@ -14,7 +14,7 @@
 // Size.
 	$size: (
 		border-radius:				8px,
-		border-width:				1px,
+		border-width:				2px,
 		element-height:				2.75rem,
 		element-margin:				2rem
 	);
@@ -33,7 +33,8 @@
 	$palette: (
 		bg:							#1b1f22,
 		bg-alt:						#000000,
-		bg-overlay:					rgba(19,21,25,0.5),
+		// bg-overlay:					rgba(19,21,25,0.65),
+		bg-overlay:					rgba(25,21,19,0.65),
 		fg:							#ffffff,
 		fg-bold:					#ffffff,
 		fg-light:					rgba(255,255,255,0.5),

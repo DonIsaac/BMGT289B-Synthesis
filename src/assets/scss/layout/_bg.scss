@@ -6,6 +6,8 @@
 
 /* BG */
 
+$bg-image: '../images/bg-highrise.jpg';
+
 #bg {
   @include vendor('transform', 'scale(1.0)');
   -webkit-backface-visibility: hidden;
@@ -54,7 +56,7 @@
         'filter #{_duration(article)} ease-in-out'
       )
     );
-    background-image: url('../images/bg.jpg');
+    background-image: url($bg-image);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
