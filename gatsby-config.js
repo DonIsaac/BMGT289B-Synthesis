@@ -3,7 +3,7 @@ const siteMetadata = {
     title: 'BMGT289B Course Synthesis',
     prefix: 'BMGT289B-Synthesis',
     author: 'Donald Isaac',
-    description: 'Course Synthesis for BMGT289N - How Do Innovators Think at the University of Maryland',
+    description: 'Course Synthesis for BMGT289B - How Do Innovators Think at the University of Maryland',
   };
 
 
