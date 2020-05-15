@@ -1,5 +1,7 @@
 # BMGT 289B Course Synthesis
 
+![Deploy](https://github.com/DonIsaac/BMGT289B-Synthesis/workflows/Deploy/badge.svg)
+
 This repository is the website I built for BMGT 289B - "How Do Innovators Think?"
 at the University of Maryland using Gatsby and MDX.
 
