@@ -7,8 +7,7 @@ import Styled from "gatsby-plugin-styled-components"
 const PostLink = ({
   excerpt,
   frontmatter: {
-    title,
-    date
+    title
   },
   fields: {
     slug
@@ -16,19 +15,19 @@ const PostLink = ({
 }) => {
   let name = toName(slug)
   return (
-  <div className="post-link">
-    <h3 class="post-title">
-      <a
-        href={`#${name}`}
-      >
-        {title || slug}
+    <div className="post-link">
+      <a href={`#${name}`}>
+        <h3 class="post-title">
+
+          {title || slug}
+
+        </h3>
+        <div className="post-meta">
+          <p className="excerpt">{excerpt}</p>
+        </div>
       </a>
-    </h3>
-    <div className="post-meta">
-      <p className="excerpt">{excerpt}</p>
     </div>
-  </div>
-)
+  )
 }
 // const PostLink = props => <div>{props.frontmatter?.title || props.slug}</div>
 // const PostLink = ({

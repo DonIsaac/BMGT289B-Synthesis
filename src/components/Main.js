@@ -1,10 +1,6 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import Article from './Article'
 import PostList from './Post-List'
-import pic01 from '../assets/images/pic01.jpg'
-import pic02 from '../assets/images/pic02.jpg'
-import pic03 from '../assets/images/pic03.jpg'
 
 export default ({data, onBack, ...props}) => (
   <div
